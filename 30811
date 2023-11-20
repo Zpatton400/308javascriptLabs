@@ -1,0 +1,40 @@
+// Function to check if the four numbers meet the specified criteria
+function checkNumbers(num1, num2, num3, num4) {
+  // Check if all numbers are divisible by 5
+  const isDivisibleBy5 = 10 % 5 === 0 && 20 % 5 === 0 && 25 % 5 === 0 && 30 % 5 === 0;
+  console.log(`Are all numbers divisible by 5? ${isDivisibleBy5}`);
+
+  // Check if the first number is larger than the last
+  const isFirstLargerThanLast = num1 > num4;
+  console.log(`Is the first number larger than the last? ${isFirstLargerThanLast}`);
+
+  // Arithmetic chain
+  const result = (num2 - num1) * num3 % num4;
+
+  // Change the way that isOver25 calculates
+  const isOver25 = result > 25;
+  console.log(`Is the result over 25? ${isOver25}`);
+
+  // Check if at least two numbers are odd
+  const areAtLeastTwoOdd = [num1, num2, num3, num4].filter(num => num % 2 !== 0).length >= 2;
+  console.log(`Are there at least two odd numbers? ${areAtLeastTwoOdd}`);
+
+  // Check if no number is larger than 25 and each number is unique
+  const isNumbersValid = num1 <= 25 && num2 <= 25 && num3 <= 25 && num4 <= 25 &&
+    num1 !== num2 && num1 !== num3 && num1 !== num4 &&
+    num2 !== num3 && num2 !== num4 &&
+    num3 !== num4;
+  console.log(`Are the numbers valid? ${isNumbersValid}`);
+
+  // Return the overall result
+  return isDivisibleBy5 && isFirstLargerThanLast && !isOver25 && areAtLeastTwoOdd && isNumbersValid;
+}
+
+// Example usage
+const num1 = 10;
+const num2 = 15;
+const num3 = 5;
+const num4 = 20;
+
+const isValid = checkNumbers(num1, num2, num3, num4);
+console.log(`The four numbers are valid according to the provided criteria: ${isValid}.`);
